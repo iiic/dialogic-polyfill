@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Dialogic polyfill - html example</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="/example.css" crossorigin="anonymous" integrity="sha256-3dujCJSgkpcb6zbg2ZUAG6wT3b9AOQe/QqHgqWP6Jzo=">
+</head>
+
+<body>
+
+	<button>Toggle dialog</button>
+	<p>To show dialog press this button.</p>
+	<br>
+	<p>For more info:</p>
+	<ul>
+		<li>Readme in standalone file <a href="/README.md">/README.md</a></li>
+		<li>Repo on <a href="https://github.com/iiic/dialogic-polyfill">Github</a></li>
+		<li>Webpage about polyfill <a href="https://iiic.dev/dialogic-polyfill">https://iiic.dev/dialogic-polyfill</a></li>
+	</ul>
+
+	<dialog open role="alertdialog" aria-labelledby="add-delivery-address" aria-describedby="delivery-address-description">
+		<div role="document" tabindex="0">
+			<h3 id="add-delivery-address">Insert your Delivery address</h3>
+			<p id="delivery-address-description">
+				… imagine some form in here :)
+				<br><br>
+				<i>
+					Lorem ipsum dolor sit amet, consectetuer adipiscing elit.<br>
+					Aliquam erat volutpat. Suspendisse sagittis ultrices augue.<br>
+					Integer malesuada. Aliquam ornare wisi eu metus. Integer pellentesque quam vel velit.<br>
+					Nunc dapibus tortor vel mi dapibus sollicitudin.
+				</i>
+			</p>
+			<button onclick="alert('yes')">yes</button> / <button onclick="alert('no')">no</button>
+		</div>
+		<button title="close dialog">x</button>
+	</dialog>
+
+	<script type="module" src="/dialogicPolyfill.mjs" crossorigin="anonymous" integrity="sha256-dHKuaxOuwurk+H26C/fMr3WGod+O7AgrhBQ6b80qc/w="></script>
+	<script type="module">
+		( () => {
+			const button = document.querySelector( 'button' );
+			const dialog = document.querySelector( 'dialog' );
+			const closingButton = document.querySelector( 'dialog>button' );
+			const KEYCODE_ESC = 27;
+
+			button.addEventListener( 'click', () => {
+				if ( dialog.open )
+				{
+					dialog.close();
+				} else
+				{
+					dialog.show();
+				}
+			}, false );
+
+			dialog.addEventListener( 'keyup', ( /** @type {KeyboardEvent} */ event ) => {
+				if ( event.keyCode === KEYCODE_ESC )
+				{
+					dialog.close();
+				}
+			}, false );
+
+			closingButton.addEventListener( 'click', ( /** @type {MouseEvent */ event ) => {
+				/** @type {HTMLButtonElement} */
+				const button = event.target;
+
+				/** @type {HTMLDialogElement} */
+				const dialog = button.parentNode;
+
+				dialog.close();
+			}, false );
+		} )();
+	</script>
