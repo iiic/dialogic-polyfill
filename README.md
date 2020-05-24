@@ -1,11 +1,13 @@
 # dialogic-polyfill
-JS module polyfill for HTML dialog element.
+JS module polyfill for HTML dialog element. Simple, easy to use, **No dependencies**, just vanilla js.
 
 Polyfill is in single javascript module file `dialogicPolyfill.mjs`. Include it into your site like this:
 
 ``` html
 	<script type="module" src="/dialogicPolyfill.mjs" crossorigin="anonymous" integrity="sha256-dHKuaxOuwurk+H26C/fMr3WGod+O7AgrhBQ6b80qc/w="></script>
 ```
+
+That's it! Now you can use dialog element like you know from specification [MDN: The Dialog element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog) and it will work even in browsers that doesn't have full support for dialog yet.
 
 All other files like `example-usage.html` and `example.css` are there to help, but they are not needed for polyfill function.
 
@@ -22,3 +24,21 @@ This polyfill is in js module, and modules are in default `defer` (even if you d
 You can change this default behaviour by adding attribute `async`, but yout can't make it synchronous.
 
 All browsers have `dialog` element styled, even if they didn't support function like `show()` and `close()`. (This is for example Firefox now).
+
+Services
+--------
+
+Unpkg: https://unpkg.com/dialogic-polyfill
+
+NPM: https://www.npmjs.com/package/dialogic-polyfill
+
+
+# Licence
+
+**CC BY-SA 4.0**
+
+This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/ or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+-------
+
+more info at https://iiic.dev/dialogic-polyfill
