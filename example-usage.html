@@ -10,7 +10,7 @@
 
 <body>
 
-	<button>Toggle dialog</button>
+	<button data-on="tap:my-lightbox">Toggle dialog</button>
 	<p>To show dialog press this button.</p>
 	<br>
 	<p>For more info:</p>
@@ -20,7 +20,7 @@
 		<li>Webpage about polyfill <a href="https://iiic.dev/dialogic-polyfill">https://iiic.dev/dialogic-polyfill</a></li>
 	</ul>
 
-	<dialog open role="alertdialog" aria-labelledby="add-delivery-address" aria-describedby="delivery-address-description">
+	<dialog id="my-lightbox" role="alertdialog" aria-labelledby="add-delivery-address" aria-describedby="delivery-address-description">
 		<div role="document" tabindex="0">
 			<h3 id="add-delivery-address">Insert your Delivery address</h3>
 			<p id="delivery-address-description">
@@ -35,42 +35,53 @@
 			</p>
 			<button onclick="alert('yes')">yes</button> / <button onclick="alert('no')">no</button>
 		</div>
-		<button title="close dialog">x</button>
+		<button data-on="tap:my-lightbox.close" title="close dialog">x</button>
 	</dialog>
 
-	<script type="module" src="/dialogicPolyfill.mjs" crossorigin="anonymous" integrity="sha256-dHKuaxOuwurk+H26C/fMr3WGod+O7AgrhBQ6b80qc/w="></script>
+	<script type="module" src="/dialogicPolyfill.mjs" crossorigin="anonymous" integrity="sha256-tcuKQ/zHdgYxhMhX4ouXfqnqtOMXek83f//3owjsOe0="></script>
 	<script type="module">
 		( () => {
-			const button = document.querySelector( 'button' );
-			const dialog = document.querySelector( 'dialog' );
-			const closingButton = document.querySelector( 'dialog>button' );
+			const TOGGLER_ATTRIBUTE = 'data-on';
+			const TAP_ACTION = 'tap:';
+			const CLOSE_ACTION = 'close';
 			const KEYCODE_ESC = 27;
 
-			button.addEventListener( 'click', () => {
-				if ( dialog.open )
+			document.querySelectorAll( '[' + TOGGLER_ATTRIBUTE + ']' ).forEach( (/** @type {HTMLElement} */ element ) => {
+				if ( element.getAttribute( TOGGLER_ATTRIBUTE ).substr( 0, TAP_ACTION.length ) === TAP_ACTION )
 				{
-					dialog.close();
-				} else
-				{
-					dialog.show();
+					const tapAction = element.getAttribute( TOGGLER_ATTRIBUTE ).substr( TAP_ACTION.length ).split( '.' );
+
+					/** @type {HTMLDialogElement} */
+					let dialog = ( document.getElementById( tapAction[ 0 ] ) );
+
+					if ( !dialog )
+					{
+
+						/** @type {HTMLDialogElement} */
+						dialog = ( element.parentElement );
+
+					}
+
+					if ( tapAction[ 1 ] && tapAction[ 1 ] === CLOSE_ACTION )
+					{
+						element.addEventListener( 'click', ( /** @type {MouseEvent} */ ) => {
+							dialog.close();
+						}, false );
+					} else
+					{
+						element.addEventListener( 'click', ( /** @type {MouseEvent} */ ) => {
+							dialog.show();
+						}, false );
+					}
 				}
-			}, false );
-
-			dialog.addEventListener( 'keyup', ( /** @type {KeyboardEvent} */ event ) => {
-				if ( event.keyCode === KEYCODE_ESC )
-				{
-					dialog.close();
-				}
-			}, false );
-
-			closingButton.addEventListener( 'click', ( /** @type {MouseEvent */ event ) => {
-				/** @type {HTMLButtonElement} */
-				const button = event.target;
-
-				/** @type {HTMLDialogElement} */
-				const dialog = button.parentNode;
-
-				dialog.close();
-			}, false );
+			} );
+			document.querySelectorAll( 'dialog' ).forEach( ( /** @type {HTMLDialogElement} */ dialog ) => {
+				dialog.addEventListener( 'keyup', ( /** @type {KeyboardEvent} */ event ) => {
+					if ( event.keyCode === KEYCODE_ESC )
+					{
+						dialog.close();
+					}
+				}, false );
+			} );
 		} )();
 	</script>

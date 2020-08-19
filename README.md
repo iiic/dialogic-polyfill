@@ -4,7 +4,7 @@ JS module polyfill for HTML dialog element. Simple, easy to use, **No dependenci
 Polyfill is in single javascript module file `dialogicPolyfill.mjs`. Include it into your site like this:
 
 ``` html
-	<script type="module" src="/dialogicPolyfill.mjs" crossorigin="anonymous" integrity="sha256-dHKuaxOuwurk+H26C/fMr3WGod+O7AgrhBQ6b80qc/w="></script>
+	<script type="module" src="/dialogicPolyfill.mjs" crossorigin="anonymous" integrity="sha256-tcuKQ/zHdgYxhMhX4ouXfqnqtOMXek83f//3owjsOe0="></script>
 ```
 
 That's it! Now you can use dialog element like you know from specification [MDN: The Dialog element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog) and it will work even in browsers that doesn't have full support for dialog yet.

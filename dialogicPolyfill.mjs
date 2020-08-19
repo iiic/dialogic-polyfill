@@ -6,12 +6,12 @@
 * @see https://iiic.dev/dialogic-polyfill
 * @license https://creativecommons.org/licenses/by-sa/4.0/legalcode.cs CC BY-SA 4.0
 * @since Q4 2019
-* @version 0.1
+* @version 0.2
 */
 ( () =>
 {
 
-	/** pe {HTMLDialogElement|HTMLUnknownElement} */
+	/** @type {HTMLDialogElement|HTMLUnknownElement} */
 	const dialog = ( document.createElement( 'DIALOG' ) );
 
 	const OPEN_STATUS = 'open';
