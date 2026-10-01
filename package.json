@@ -1,7 +1,7 @@
 {
 	"name": "dialogic-polyfill",
 	"version": "0.1.0",
-	"description": "JS module polyfill for HTML dialog element.",
+	"description": "DEPRECATED: JS module polyfill for HTML dialog element. A possible successor is https://github.com/iiic/Dialogic",
 	"main": "dialogicPolyfill.mjs",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1"
