@@ -1,10 +1,17 @@
 # dialogic-polyfill
+
+> **⚠️ DEPRECATED:** This project is deprecated and no longer maintained, please don't use it in new projects.
+>
+> A possible successor is **[Dialogic](https://github.com/iiic/Dialogic)** – popups built on the native `<dialog>` element with the same API as the browser's `Notification()`. It isn't a polyfill and has a different API, so it's not a drop-in replacement.
+>
+> The `dialog` element itself is natively supported by all modern browsers today, so you most likely don't need any polyfill for it.
+
 JS module polyfill for HTML dialog element. Simple, easy to use, **No dependencies**, just vanilla js.
 
 Polyfill is in single javascript module file `dialogicPolyfill.mjs`. Include it into your site like this:
 
 ``` html
-	<script type="module" src="/dialogicPolyfill.mjs" crossorigin="anonymous" integrity="sha256-tcuKQ/zHdgYxhMhX4ouXfqnqtOMXek83f//3owjsOe0="></script>
+	<script type="module" src="/dialogicPolyfill.mjs" crossorigin="anonymous" integrity="sha256-PQWC6KjeQE1GHATV6Tj7tz4ccuHICdpyVLvzOn1UZpU="></script>
 ```
 
 That's it! Now you can use dialog element like you know from specification [MDN: The Dialog element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog) and it will work even in browsers that doesn't have full support for dialog yet.

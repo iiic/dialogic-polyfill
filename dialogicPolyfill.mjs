@@ -2,6 +2,7 @@
 * @name DialogicPolyfill
 * @description
 * Polyfill for dialog element (Q4 2019 is native support only in Chrome and Opera)
+* @deprecated This project is deprecated and no longer maintained, a possible successor is https://github.com/iiic/Dialogic
 * @author ic < ic.czech@gmail.com >
 * @see https://iiic.dev/dialogic-polyfill
 * @license https://creativecommons.org/licenses/by-sa/4.0/legalcode.cs CC BY-SA 4.0
